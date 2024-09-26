@@ -51,24 +51,18 @@ exports("GetPlayerLevelAndProgress", GetPlayerLevelAndProgress)
 local SendSkillsDataToClient = function(playerId)
     local skillsData = {}
     
-    -- Loop through each skill in the skillsConfig and retrieve XP and level data
     for skillName, _ in pairs(skillsConfig) do
         local xpAmount = GetPlayerXP(playerId, skillName)
         local levelData = GetPlayerLevelAndProgress(playerId, skillName)
         
-        -- Store the data in skillsData table
         skillsData[skillName] = {
             name = skillName,
             xp = xpAmount,
             level = levelData.level,
             progress = levelData.progress
         }
-        
-        -- Print each skill's information in a readable format
-        print(('[Player %s] Skill: %s | XP: %d | Level: %d | Progress: %.2f%%'):format(playerId, skillName, xpAmount, levelData.level, levelData.progress))
     end
     
-    -- Send the updated skills data to the client
     TriggerClientEvent('sd-skills:client:updateSkills', playerId, skillsData)
 end
 
