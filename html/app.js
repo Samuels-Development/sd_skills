@@ -60,8 +60,6 @@ window.addEventListener('message', (event) => {
 
 document.getElementById('close-button').addEventListener('click', closeUI);
 
-document.getElementById('refresh-button').addEventListener('click', refreshSkills);
-
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
         closeUI();

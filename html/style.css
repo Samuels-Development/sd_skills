@@ -31,7 +31,6 @@ body.active {
     gap: 0.5rem;
 }
 
-#refresh-button,
 #close-button {
     background: none;
     border: none;
@@ -45,14 +44,8 @@ body.active {
     justify-content: center;
 }
 
-#refresh-button:hover,
 #close-button:hover {
     color: #22c55e;
-}
-
-#refresh-button svg {
-    width: 1.25rem;
-    height: 1.25rem;
 }
 
 h2 {
