@@ -28,6 +28,9 @@ Store: [Click Here](https://fivem.samueldev.shop)
 
 ## 📖 Usage
 
+### Command
+You can use `/skills` to open the UI, this can be changed in the `client/main.lua`.
+
 ### Overview
 
 `sd-skills` provides a set of exported functions and events that allow you to manage player skills and XP. You can increase or decrease a player's XP, set their XP directly, and retrieve their current level and progress towards the next level.
