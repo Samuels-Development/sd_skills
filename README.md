@@ -1,9 +1,10 @@
 # sd-skills
 
-`sd-skills` is a comprehensive and flexible skills and XP (Experience Points) system for FiveM, allowing you to add, manage, and track player skills, levels, and progress within your server.
+`sd-skills` is a comprehensive and flexible skills script for FiveM, allowing you to add, manage, and track player skills, levels, and progress within your server.
 
 ## UI Preview
-![FiveM_b3095_GTAProcess_RJpJwWj1zH](https://github.com/user-attachments/assets/7c491736-8586-4963-baaa-fa88e2ba9b9a)
+![FiveM_b3095_GTAProcess_oFteAApnrY](https://github.com/user-attachments/assets/fa8c5133-11e4-4c05-a03d-a83e417eb5a4)
+
 
 ## 🔔 Contact
 
