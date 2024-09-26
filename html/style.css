@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: none;
+}
+
+body.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(17, 24, 39, 0.75);
+}
+
+#skills-container {
+    background-color: #1f2937;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 48rem;
+    position: relative;
+}
+
+.header-buttons {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+#refresh-button,
+#close-button {
+    background: none;
+    border: none;
+    color: #4ade80;
+    font-size: 2.2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#refresh-button:hover,
+#close-button:hover {
+    color: #22c55e;
+}
+
+#refresh-button svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+h2 {
+    color: #4ade80;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+#skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.skill-item {
+    background-color: #374151;
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.skill-name {
+    color: #4ade80;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.skill-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.skill-xp {
+    color: #93c5fd;
+    font-size: 0.75rem;
+}
+
+.skill-level {
+    background-color: #1e3a8a;
+    color: #93c5fd;
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.skill-progress {
+    height: 0.5rem;
+    background-color: #4b5563;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.skill-progress-bar {
+    height: 100%;
+    background-color: #4ade80;
+    transition: width 0.3s ease;
+}
