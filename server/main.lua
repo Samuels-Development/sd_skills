@@ -125,6 +125,7 @@ local SetPlayerXP = function(playerId, skillName, xpAmount)
     InitializePlayerXP(playerId)
     playerXP[playerId][skillName] = xpAmount
     SavePlayerXPToDatabase(playerId)
+    SendSkillsDataToClient(playerId)
 end
 
 exports("SetPlayerXP", SetPlayerXP)
