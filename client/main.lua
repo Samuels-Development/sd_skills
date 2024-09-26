@@ -33,7 +33,6 @@ end)
 -- Event handler for receiving skills data from the server
 RegisterNetEvent('sd-skills:client:updateSkills', function(serverSkills)
     if serverSkills then
-        print(skills)
         skills = serverSkills
         UpdateSkillsUI(skills)
     end
