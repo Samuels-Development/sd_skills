@@ -93,22 +93,18 @@ The following functions are exported and can be used in your scripts:
 Here's how you can use these exports in your scripts:
 
 ```lua
--- Example code demonstrating the use of sd-skills exports
-
-local playerId = source 
-
 -- Get a player's current XP in a skill
-local currentXP = exports['sd_skills']:GetPlayerXP(playerId, 'Mining')
+local currentXP = exports['sd_skills']:GetPlayerXP(source, 'MINING')
 print('Current Mining XP:', currentXP)
 
 -- Increase a player's XP in a skill
-exports['sd_skills']:IncreasePlayerXP(playerId, 'Mining', 150)
+exports['sd_skills']:IncreasePlayerXP(source, 'MINING', 150)
 
 -- Decrease a player's XP in a skill
-exports['sd_skills']:DecreasePlayerXP(playerId, 'Lockpicking', 50)
+exports['sd_skills']:DecreasePlayerXP(source, 'LOCKPICKING', 50)
 
 -- Set a player's XP in a skill directly
-exports['sd_skills']:SetPlayerXP(playerId, 'Fishing', 5000)
+exports['sd_skills']:SetPlayerXP(source, 'FISHING', 5000)
 
 -- Get a player's level and progress in a skill
 local levelData = exports['sd-skills']:GetPlayerLevelAndProgress(playerId, 'Crafting')
