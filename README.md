@@ -20,6 +20,12 @@ Store: [Click Here](https://fivem.samueldev.shop)
 4. Add `ensure sd_skills` to your `server.cfg` to ensure the resource starts with your server.
 5. Import the provided SQL file (`run_me.sql`) into your database to create the necessary tables.
 
+
+## 📖 Dependencies
+- qb-core, qbx_core or es_extended.
+- [oxymsql](https://github.com/overextended/oxmysql) 
+- [sd_lib](https://github.com/Samuels-Development/sd_lib/releases)
+
 ## 📖 Usage
 
 ### Overview
