@@ -13,23 +13,6 @@ local UpdateSkillsUI = function(skillsData)
     })
 end
 
--- Function to refresh skills data from the server
-local RefreshSkills = function()
-    SD.Callback('sd-skills:server:getSkillsData', false, function(serverSkills)
-        if serverSkills then
-            skills = serverSkills
-            UpdateSkillsUI(skills)
-        else
-        end
-    end)
-end
-
--- NUI Callback for refreshing skills
-RegisterNUICallback('refreshSkills', function(data, cb)
-    RefreshSkills()
-    cb('ok')
-end)
-
 -- Function to toggle the visibility of the skills UI.
 --- param show A boolean indicating whether to show or hide the UI.
 local ToggleSkillsUI = function(show)
@@ -39,36 +22,30 @@ local ToggleSkillsUI = function(show)
         show = skillsVisible
     })
     SetNuiFocus(skillsVisible, skillsVisible)
-
-    if skillsVisible then
-        SD.Callback('sd-skills:server:getSkillsData', false, function(serverSkills)
-            if serverSkills then
-                skills = serverSkills
-                UpdateSkillsUI(skills)
-            else
-            end
-        end)
-    end
 end
 
--- NUI Callback for closing the UI
+-- Event handler for closing the UI
 RegisterNUICallback('closeUI', function(data, cb)
     ToggleSkillsUI(false)
     cb('ok')
 end)
 
--- Command to open the skills UI
+-- Event handler for receiving skills data from the server
+RegisterNetEvent('sd-skills:client:updateSkills', function(serverSkills)
+    if serverSkills then
+        print(skills)
+        skills = serverSkills
+        UpdateSkillsUI(skills)
+    end
+end)
+
 RegisterCommand("skills", function()
     ToggleSkillsUI(true)
 end, false)
 
 AddEventHandler('onResourceStart', function(resourceName)
     if GetCurrentResourceName() == resourceName then
-        Wait(3250)
-        SD.Callback('sd-skills:server:getSkillsData', false, function(serverSkills)
-        if serverSkills then
-            skills = serverSkills
-        end
-    end)
+        -- Request initial skills data from the server
+        TriggerServerEvent('sd-skills:server:requestInitialSkillsData')
     end
 end)

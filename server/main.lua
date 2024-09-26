@@ -4,6 +4,7 @@ local playerXP = {}
 -- Table to store skills configuration
 local skillsConfig = require('skills')
 
+
 -- Retrieves the player's current XP in a skill.
 ---@param playerId The player's server ID.
 ---@param skillName The name of the skill.
@@ -45,6 +46,32 @@ end
 
 exports("GetPlayerLevelAndProgress", GetPlayerLevelAndProgress)
 
+-- Sends skills data to the client
+---@param playerId The player's server ID.
+local SendSkillsDataToClient = function(playerId)
+    local skillsData = {}
+    
+    -- Loop through each skill in the skillsConfig and retrieve XP and level data
+    for skillName, _ in pairs(skillsConfig) do
+        local xpAmount = GetPlayerXP(playerId, skillName)
+        local levelData = GetPlayerLevelAndProgress(playerId, skillName)
+        
+        -- Store the data in skillsData table
+        skillsData[skillName] = {
+            name = skillName,
+            xp = xpAmount,
+            level = levelData.level,
+            progress = levelData.progress
+        }
+        
+        -- Print each skill's information in a readable format
+        print(('[Player %s] Skill: %s | XP: %d | Level: %d | Progress: %.2f%%'):format(playerId, skillName, xpAmount, levelData.level, levelData.progress))
+    end
+    
+    -- Send the updated skills data to the client
+    TriggerClientEvent('sd-skills:client:updateSkills', playerId, skillsData)
+end
+
 -- Saves the player's XP data to the database.
 ---@param playerId The player's server ID.
 local SavePlayerXPToDatabase = function(playerId)
@@ -55,9 +82,10 @@ local SavePlayerXPToDatabase = function(playerId)
     })
 end
 
--- Loads the player's XP data from the database.
+-- Loads the player's XP data from the database and calls a callback once loaded.
 ---@param playerId The player's server ID.
-local LoadPlayerXPFromDatabase = function(playerId)
+---@param callback The callback function to execute after the data is loaded.
+local LoadPlayerXPFromDatabase = function(playerId, callback)
     local identifier = SD.GetIdentifier(playerId)
     MySQL.Async.fetchAll("SELECT xp_data FROM players_xp WHERE identifier = @identifier", {
         ['@identifier'] = identifier
@@ -71,15 +99,22 @@ local LoadPlayerXPFromDatabase = function(playerId)
                 ['@xp_data'] = json.encode({})
             })
         end
+        if callback then
+            callback()
+        end
     end)
 end
 
--- Initializes a player's XP data.
+-- Initializes a player's XP data and sends it to the client after it's loaded.
 ---@param playerId The player's server ID.
 local InitializePlayerXP = function(playerId)
-    if playerXP[playerId] then return end
-    playerXP[playerId] = {}
-    LoadPlayerXPFromDatabase(playerId)
+    if playerXP[playerId] then
+        SendSkillsDataToClient(playerId)
+    else
+        LoadPlayerXPFromDatabase(playerId, function()
+            SendSkillsDataToClient(playerId)
+        end)
+    end
 end
 
 -- Sets the player's XP in a skill.
@@ -144,22 +179,11 @@ end
 
 exports("DecreasePlayerXP", DecreasePlayerXP)
 
--- Callback to send skills data to the client
-SD.Callback.Register('sd-skills:server:getSkillsData', function(source)
+-- Event handler for initial skills data request
+RegisterNetEvent('sd-skills:server:requestInitialSkillsData', function()
     local playerId = source
     InitializePlayerXP(playerId)
-    local skillsData = {}
-    for skillName, _ in pairs(skillsConfig) do
-        local xpAmount = GetPlayerXP(playerId, skillName)
-        local levelData = GetPlayerLevelAndProgress(playerId, skillName)
-        skillsData[skillName] = {
-            name = skillName,
-            xp = xpAmount,
-            level = levelData.level,
-            progress = levelData.progress
-        }
-    end
-    return skillsData
+    SendSkillsDataToClient(playerId)
 end)
 
 -- Event handler for player disconnection.
