@@ -183,8 +183,12 @@ exports("DecreasePlayerXP", DecreasePlayerXP)
 -- Event handler for initial skills data request
 RegisterNetEvent('sd-skills:server:requestInitialSkillsData', function()
     local playerId = source
+
+    if playerXP[playerId] then
+        return
+    end
+
     InitializePlayerXP(playerId)
-    SendSkillsDataToClient(playerId)
 end)
 
 -- Event handler for player disconnection.
