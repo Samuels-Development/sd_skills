@@ -167,3 +167,5 @@ AddEventHandler('playerDropped', function()
     local playerId = source
     playerXP[playerId] = nil
 end)
+
+SD.CheckVersion('Samuels-Development/sd_skills') -- Check version of specified resource
