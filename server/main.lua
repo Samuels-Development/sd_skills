@@ -18,6 +18,16 @@ end
 
 exports("GetPlayerXP", GetPlayerXP)
 
+-- Calculates the player's progress in a skill level
+---@param xp number The player's total XP in the skill.
+---@param totalXP number The cumulative total XP required for all levels up to the current level.
+---@param xpRequired number The amount of XP required for the current level.
+---@return number The player's progress towards the next level as a percentage.
+local CalculateProgress = function(xp, totalXP, xpRequired)
+    local xpIntoLevel = xp - (totalXP - xpRequired)
+    return (xpIntoLevel / xpRequired) * 100
+end
+
 -- Determines the player's level and progress in a skill based on their XP.
 ---@param playerId The player's server ID.
 ---@param skillName The name of the skill.
@@ -34,8 +44,7 @@ local GetPlayerLevelAndProgress = function(playerId, skillName)
     for lvl, xpRequired in ipairs(skill.xpPerLevel) do
         totalXP = totalXP + xpRequired
         if xp < totalXP then
-            local xpIntoLevel = xp - (totalXP - xpRequired)
-            local progress = (xpIntoLevel / xpRequired) * 100
+            local progress = CalculateProgress(xp, totalXP, xpRequired)
             return { level = lvl, progress = progress }
         end
     end
