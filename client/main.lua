@@ -31,7 +31,7 @@ RegisterNUICallback('closeUI', function(data, cb)
 end)
 
 -- Event handler for receiving skills data from the server
-RegisterNetEvent('sd-skills:client:updateSkills', function(serverSkills)
+RegisterNetEvent('sd_skills:client:updateSkills', function(serverSkills)
     if serverSkills then
         skills = serverSkills
         UpdateSkillsUI(skills)
@@ -44,7 +44,6 @@ end, false)
 
 AddEventHandler('onResourceStart', function(resourceName)
     if GetCurrentResourceName() == resourceName then
-        -- Request initial skills data from the server
-        TriggerServerEvent('sd-skills:server:requestInitialSkillsData')
+        TriggerServerEvent('sd_skills:server:syncData')
     end
 end)

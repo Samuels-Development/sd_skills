@@ -71,7 +71,7 @@ local SendSkillsDataToClient = function(playerId)
         }
     end
     
-    TriggerClientEvent('sd-skills:client:updateSkills', playerId, skillsData)
+    TriggerClientEvent('sd_skills:client:updateSkills', playerId, skillsData)
 end
 
 -- Saves the player's XP data to the database.
@@ -182,7 +182,7 @@ end
 exports("DecreasePlayerXP", DecreasePlayerXP)
 
 -- Event handler for initial skills data request
-RegisterNetEvent('sd-skills:server:requestInitialSkillsData', function()
+RegisterNetEvent('sd_skills:server:syncData', function()
     local playerId = source
 
     if playerXP[playerId] then
