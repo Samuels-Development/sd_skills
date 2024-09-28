@@ -4,6 +4,7 @@ local playerXP = {}
 -- Table to store skills configuration
 local skillsConfig = require('skills')
 
+
 -- Retrieves the player's current XP in a skill.
 ---@param playerId The player's server ID.
 ---@param skillName The name of the skill.
@@ -129,6 +130,7 @@ local SetPlayerXP = function(playerId, skillName, xpAmount)
     InitializePlayerXP(playerId)
     playerXP[playerId][skillName] = xpAmount
     SavePlayerXPToDatabase(playerId)
+    SendSkillsDataToClient(playerId)
 end
 
 exports("SetPlayerXP", SetPlayerXP)
