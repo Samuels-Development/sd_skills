@@ -78,9 +78,11 @@ end
 ---@param playerId The player's server ID.
 local SavePlayerXPToDatabase = function(playerId)
     local identifier = SD.GetIdentifier(playerId)
+    local serializedXPData = json.encode(playerXP[playerId])
+
     MySQL.Async.execute("UPDATE players_xp SET xp_data = @xp_data WHERE identifier = @identifier", {
         ['@identifier'] = identifier,
-        ['@xp_data'] = json.encode(playerXP[playerId])
+        ['@xp_data'] = serializedXPData
     })
 end
 
