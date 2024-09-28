@@ -5,7 +5,7 @@ local skillsVisible = false
 local skills = {}
 
 -- Function to update the skills data in the UI.
----param skillsData A table containing the skills data to display.
+---@param skillsData A table containing the skills data to display.
 local UpdateSkillsUI = function(skillsData)
     SendNUIMessage({
         action = "updateSkills",
@@ -14,7 +14,7 @@ local UpdateSkillsUI = function(skillsData)
 end
 
 -- Function to toggle the visibility of the skills UI.
---- param show A boolean indicating whether to show or hide the UI.
+---@param show A boolean indicating whether to show or hide the UI.
 local ToggleSkillsUI = function(show)
     skillsVisible = show
     SendNUIMessage({
