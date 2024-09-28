@@ -10,11 +10,7 @@ local skillsConfig = require('skills')
 ---@param skillName The name of the skill.
 ---@return The player's current XP in the skill.
 local GetPlayerXP = function(playerId, skillName)
-    if playerXP[playerId] and playerXP[playerId][skillName] then
-        return playerXP[playerId][skillName]
-    else
-        return 0
-    end
+    return playerXP[playerId] and playerXP[playerId][skillName] or 0
 end
 
 exports("GetPlayerXP", GetPlayerXP)
