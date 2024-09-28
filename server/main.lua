@@ -166,9 +166,7 @@ end
 ---@param skillName The name of the skill.
 ---@param amount The amount of XP to add.
 local IncreasePlayerXP = function(playerId, skillName, amount)
-    if amount > 0 then
-        ModifyPlayerXP(playerId, skillName, amount)
-    end
+    ModifyPlayerXP(playerId, skillName, amount)
 end
 
 exports("IncreasePlayerXP", IncreasePlayerXP)
@@ -178,9 +176,7 @@ exports("IncreasePlayerXP", IncreasePlayerXP)
 ---@param skillName The name of the skill.
 ---@param amount The amount of XP to remove.
 local DecreasePlayerXP = function(playerId, skillName, amount)
-    if amount > 0 then
-        ModifyPlayerXP(playerId, skillName, -amount)
-    end
+    ModifyPlayerXP(playerId, skillName, -amount)
 end
 
 exports("DecreasePlayerXP", DecreasePlayerXP)
