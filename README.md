@@ -36,6 +36,8 @@ You can use `/skills` to open the UI, this can be changed in the `client/main.lu
 
 `sd-skills` provides a set of exported functions and events that allow you to manage player skills and XP. You can increase or decrease a player's XP, set their XP directly, and retrieve their current level and progress towards the next level.
 
+To edit what skills are available and define what the level caps are for each of them, take a look at the `skills.lua`
+
 ### Exports
 
 The following functions are exported and can be used in your scripts:
@@ -108,6 +110,6 @@ exports['sd_skills']:DecreasePlayerXP(source, 'LOCKPICKING', 50)
 exports['sd_skills']:SetPlayerXP(source, 'FISHING', 5000)
 
 -- Get a player's level and progress in a skill
-local levelData = exports['sd-skills']:GetPlayerLevelAndProgress(playerId, 'Crafting')
+local levelData = exports['sd_skills']:GetPlayerLevelAndProgress(playerId, 'CRAFTING')
 print('Level:', levelData.level)
 print('Progress:', levelData.progress .. '%')
