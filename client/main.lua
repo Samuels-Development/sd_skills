@@ -47,3 +47,13 @@ AddEventHandler('onResourceStart', function(resourceName)
         TriggerServerEvent('sd_skills:server:syncData')
     end
 end)
+
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
+    Wait(500)
+    TriggerServerEvent('sd_skills:server:syncData')
+end)
+
+RegisterNetEvent('esx:playerLoaded', function()
+    Wait(500)
+    TriggerServerEvent('sd_skills:server:syncData')
+end)
