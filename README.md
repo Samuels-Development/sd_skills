@@ -10,7 +10,7 @@
 ## 🔔 Contact
 
 Author: Samuel#0008  
-Discord: [Join the Discord](https://discord.gg/samueldev)  
+Discord: [Join the Discord](https://discord.gg/FzPehMQaBQ)  
 Store: [Click Here](https://fivem.samueldev.shop)
 
 ## 💾 Installation
