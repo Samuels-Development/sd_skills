@@ -57,3 +57,8 @@ RegisterNetEvent('esx:playerLoaded', function()
     Wait(500)
     TriggerServerEvent('sd_skills:server:syncData')
 end)
+
+RegisterNetEvent('sd_skills:radialOpen', function()
+TriggerServerEvent('sd_skills:server:syncData')
+ToggleSkillsUI(true)
+end)
